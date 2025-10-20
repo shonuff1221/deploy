@@ -78,7 +78,9 @@ services:
     ports:
       - "5432:5432"
     networks:
-      - emqx-bridge
+      emqx-bridge:
+        aliases:
+          - postgres
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U hbot -d hummingbot_api"]
       interval: 10s
