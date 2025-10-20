@@ -30,7 +30,9 @@ services:
       - BROKER_HOST=emqx
       - DATABASE_URL=${DATABASE_URL}
     networks:
-      - emqx-bridge
+      emqx-bridge:
+        aliases:
+          - hummingbot-api
     depends_on:
       - postgres
   emqx:
