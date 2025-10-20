@@ -11,7 +11,7 @@ services:
         - BACKEND_API_USERNAME=${USERNAME}
         - BACKEND_API_PASSWORD=${PASSWORD}
     volumes:
-      - dashboard:/home/dashboard/credentials.yml
+      - dashboard:/home/dashboard/credentials
       - dashboard/pages:/home/dashboard/frontend/pages
     networks:
         - emqx-bridge
