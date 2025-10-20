@@ -7,7 +7,7 @@ services:
     environment:
         - AUTH_SYSTEM_ENABLED=False
         - BACKEND_API_HOST=hummingbot-api
-        - BACKEND_API_PORT=8000
+        - BACKEND_API_PORT=8117
         - BACKEND_API_USERNAME=${USERNAME}
         - BACKEND_API_PASSWORD=${PASSWORD}
     volumes:
@@ -19,7 +19,7 @@ services:
     container_name: hummingbot-api
     image: hummingbot/hummingbot-api:latest
     ports:
-      - "8000:8000"
+      - "8117:8000"
     volumes:
       - ./bots:/hummingbot-api/bots
       - /var/run/docker.sock:/var/run/docker.sock
@@ -28,7 +28,7 @@ services:
     environment:
       # Override specific values for Docker networking
       - BROKER_HOST=emqx
-      - DATABASE_URL=postgresql+asyncpg://hbot:hummingbot-api@postgres:5432/hummingbot_api
+      - DATABASE_URL=${DATABASE_URL}
     networks:
       - emqx-bridge
     depends_on:
@@ -72,7 +72,7 @@ services:
     environment:
       - POSTGRES_DB=hummingbot_api
       - POSTGRES_USER=hbot
-      - POSTGRES_PASSWORD=hummingbot-api
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
     volumes:
       - postgres-data:/var/lib/postgresql/data
     ports:
